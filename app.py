@@ -4,9 +4,6 @@ import feedparser
 from flask import Flask, url_for, request, render_template, flash
 from flask_bootstrap import Bootstrap
 
-#import logging
-#log = logging.getLogger(__name__)
-
 from forms import SearchForm
 from settings import FLICKR_FEED
 
@@ -30,9 +27,8 @@ def index():
 def query_flickr(terms=None):
 	payload = {'format':'atom', 'lang': 'en-us'}
 	if terms:
-		payload['tag'] = terms
+		payload['tags'] = terms
 	
-	#log.info("Payload {}".format(payload))
 	print "payload: %s" % payload
 
 	feeds = requests.get(FLICKR_FEED, params=payload)
